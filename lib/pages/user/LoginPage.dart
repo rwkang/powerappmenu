@@ -27,7 +27,7 @@ class LoginPage extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               height: 50,
-              child: Text(
+              child: const Text(
                 "로그인 페이지",
                 style: TextStyle(
                   fontSize: 30,
@@ -71,7 +71,8 @@ class LoginPage extends StatelessWidget {
           CustomElevatedButton(
               text: "로그인", doRoutePage: () {
                 if (_formKey.currentState!.validate()) {
-                  Get.to(()=> JoinPage());
+                  Get.to(()=> HomePage());
+                  // Get.to(()=> JoinPage());
                 }
           }), // param이 2개 이상일 때.
               // text: "로그인", doRoutePage: () => Get.to(JoinPage())), // param이 1개일 때.

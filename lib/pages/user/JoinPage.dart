@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:powerappmenu/pages/user/LoginPage.dart';
+import 'package:powerappmenu/size.dart';
 import 'package:powerappmenu/util/validator_util.dart';
 import 'package:validators/validators.dart';
 
@@ -26,7 +27,8 @@ class JoinPage extends StatelessWidget {
           children: [
             Container(
               alignment: Alignment.center,
-              height: 50,
+              // height: 50, // 폰 마다 Size가 다르므로, 이렇게 상수를 주면 위험하다. 메인 폴더에 "size.dart" 파일을 만들어서 관리한다.
+              height: getScreenHeight(context) * .3,
               child: const Text(
                 "회원 가입 페이지",
                 style: TextStyle(
