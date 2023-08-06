@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:powerappmenu/pages/post/UpdatePage.dart';
 
+import '../user/UpdatePage.dart';
 import 'HomePage.dart';
 
 class DetailPage extends StatelessWidget {

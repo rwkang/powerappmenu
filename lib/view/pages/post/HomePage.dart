@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:powerappmenu/pages/post/DetailPage.dart';
 import 'package:powerappmenu/size.dart';
 
 import '../../components/LeftMenu.dart';
+import 'DetailPage.dart';
 
 class HomePage extends StatelessWidget {
   // const HomePage({super.key});

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:powerappmenu/pages/post/WritePage.dart';
-import 'package:powerappmenu/pages/user/UserInfo.dart';
 
+import '../../size.dart';
+import '../pages/post/WritePage.dart';
 import '../pages/user/LoginPage.dart';
 import '../pages/user/LogoutPage.dart';
-import '../size.dart';
+import '../pages/user/UserInfo.dart';
 
 class LeftMenu extends StatelessWidget {
   const LeftMenu({

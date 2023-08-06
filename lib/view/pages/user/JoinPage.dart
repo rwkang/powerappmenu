@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:powerappmenu/pages/user/LoginPage.dart';
 import 'package:powerappmenu/size.dart';
 import 'package:powerappmenu/util/ValidatorUtil.dart';
 import 'package:validators/validators.dart';
 
 import '../../components/CustomElevatedButton.dart';
 import '../../components/CustomTextFormField.dart';
+import 'LoginPage.dart';
 
 class JoinPage extends StatelessWidget {
   // const JoinPage({super.key});

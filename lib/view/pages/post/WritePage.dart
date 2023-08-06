@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:powerappmenu/components/CustomElevatedButton.dart';
-import 'package:powerappmenu/components/CustomTextArea.dart';
-import 'package:powerappmenu/components/CustomTextFormField.dart';
-import 'package:powerappmenu/pages/post/HomePage.dart';
 import 'package:powerappmenu/util/ValidatorUtil.dart';
+
+import '../../components/CustomElevatedButton.dart';
+import '../../components/CustomTextArea.dart';
+import '../../components/CustomTextFormField.dart';
+import 'HomePage.dart';
 
 class WritePage extends StatelessWidget {
   // const WritePage({super.key});
