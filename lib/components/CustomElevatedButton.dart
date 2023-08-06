@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:powerappmenu/pages/user/LoginPage.dart';
@@ -22,16 +21,24 @@ class CustomElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        minimumSize: Size(double.infinity, 50),
+        minimumSize: const Size(double.infinity, 50),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
       ),
 
       // pageRoute 펑션 변수를 통한, "페이지 이동"
-      onPressed: doRoutePage, // <=== pageRoute: ()=>Get.to(LoginPage()); 이런식으로 넘겨 주어야 한다.
+      onPressed: doRoutePage,
+      // <=== pageRoute: ()=>Get.to(LoginPage()); 이런식으로 넘겨 주어야 한다.
       // onPressed: () {Get.to(LoginPage());},
 
-      child: Text("$text"),);
+      child: Text(
+        "$text",
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
   }
 }

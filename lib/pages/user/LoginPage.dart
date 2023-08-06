@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:powerappmenu/util/validator_util.dart';
+import 'package:powerappmenu/util/ValidatorUtil.dart';
 
-import '../../components/custom_elevated_button.dart';
-import '../../components/custom_text_form_field.dart';
+import '../../components/CustomElevatedButton.dart';
+import '../../components/CustomTextFormField.dart';
 import '../post/HomePage.dart';
 import 'JoinPage.dart';
 
@@ -39,6 +39,7 @@ class LoginPage extends StatelessWidget {
             // "한꺼번"에 보내기 위해서는 반드시 "Form" 위젯으로 묶어서 사용해야 한다.
             // 유효성 검사 등 필요
             _loginForm(),
+            // const Divider(),
           ],
         ),
       ),
@@ -51,7 +52,6 @@ class LoginPage extends StatelessWidget {
   // Form _joinForm() {
   Widget _loginForm() {
     return Form(
-
       // 상단에서 "Form State global Key.폼 상태 관리용 클로벌 키" 정의 한 후,
       // 여기서 아래와 같이 "Key 세팅"을 하면, "현재 From 상태"를 관리할 수 있다.
       // 또한 *** 여기 펑션 외부에서까지도 *** 관리할 수 있다.
@@ -62,20 +62,32 @@ class LoginPage extends StatelessWidget {
           CustomTextFormField(
             hint: "User Name",
             doValidateFormField: doValidateUserName(),
+            value: "",
           ),
           CustomTextFormField(
             hint: "Password",
             doValidateFormField: doValidatePassword(),
+            value: "",
           ),
           // CustomElevatedButton()에서 pageRoute 펑션 변수를 통한, "페이지 이동"
           CustomElevatedButton(
-              text: "로그인", doRoutePage: () {
+              text: "로그인",
+              doRoutePage: () {
                 if (_formKey.currentState!.validate()) {
-                  Get.to(()=> HomePage());
+                  Get.to(() => HomePage());
                   // Get.to(()=> JoinPage());
                 }
-          }), // param이 2개 이상일 때.
-              // text: "로그인", doRoutePage: () => Get.to(JoinPage())), // param이 1개일 때.
+              }),
+          // param이 2개 이상일 때.
+          // text: "로그인", doRoutePage: () => Get.to(JoinPage())), // param이 1개일 때.
+          const Divider(),
+          TextButton(
+            onPressed: () {
+              Get.to(JoinPage(),);
+            },
+            child: const Text("신규 사용자 인가요?",
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+          ),
         ],
       ),
     );

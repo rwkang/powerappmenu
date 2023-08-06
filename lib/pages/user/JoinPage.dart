@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:powerappmenu/pages/user/LoginPage.dart';
 import 'package:powerappmenu/size.dart';
-import 'package:powerappmenu/util/validator_util.dart';
+import 'package:powerappmenu/util/ValidatorUtil.dart';
 import 'package:validators/validators.dart';
 
-import '../../components/custom_elevated_button.dart';
-import '../../components/custom_text_form_field.dart';
+import '../../components/CustomElevatedButton.dart';
+import '../../components/CustomTextFormField.dart';
 
 class JoinPage extends StatelessWidget {
   // const JoinPage({super.key});
@@ -53,7 +53,6 @@ class JoinPage extends StatelessWidget {
   // Form _joinForm() {
   Widget _joinForm() {
     return Form(
-
       // 상단에서 "Form State global Key.폼 상태 관리용 클로벌 키" 정의 한 후,
       // 여기서 아래와 같이 "Key 세팅"을 하면, "현재 From 상태"를 관리할 수 있다.
       // 또한 *** 여기 펑션 외부에서까지도 *** 관리할 수 있다.
@@ -64,14 +63,17 @@ class JoinPage extends StatelessWidget {
           CustomTextFormField(
             hint: "User Name",
             doValidateFormField: doValidateUserName(),
+            value: "",
           ),
           CustomTextFormField(
             hint: "Password",
             doValidateFormField: doValidatePassword(),
+            value: "",
           ),
           CustomTextFormField(
             hint: "Email",
             doValidateFormField: doValidateEmail(),
+            value: "",
           ),
           // CustomElevatedButton()에서 pageRoute 펑션 변수를 통한, "페이지 이동"
           CustomElevatedButton(
@@ -83,6 +85,19 @@ class JoinPage extends StatelessWidget {
               }
             }, // param이 2개 이상일 때.
             // doRoutePage: () => Get.to(LoginPage()), // param이 1개일 때.
+          ),
+          // const Divider(),
+          TextButton(
+            onPressed: () {
+              Get.to(LoginPage());
+            },
+            child: const Text(
+              "이미 계정이 있습ㄴ까?",
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ],
       ),

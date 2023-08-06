@@ -44,3 +44,31 @@ Function doValidateEmail() {
     }
   };
 }
+
+Function doValidateTitle() {
+  return (String? value) {
+    // value: 사용자가 타이핑한 내용.
+    // print(value);
+    if (value!.isEmpty) {
+      return "제목을 입력하시오!";}
+    else if (value.length > 30) {
+      return "제목은 30 글자를 초과할 수 없습니다!";
+    } else {
+      return null;
+    }
+  };
+}
+
+Function doValidateContent() {
+  return (String? value) {
+    // value: 사용자가 타이핑한 내용.
+    // print(value);
+    if (value!.isEmpty) {
+      return "내용을 입력하시오!";}
+    else if (value.length > 500) {
+      return "내용은 500 글자를 초과할 수 없습니다!";
+    } else {
+      return null;
+    }
+  };
+}
