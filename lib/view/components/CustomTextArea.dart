@@ -17,10 +17,13 @@ class CustomTextArea extends StatelessWidget {
 
   // "글 수정하기"와 같이, 초기에 반드시 어떤 내용을 가져가서 뿌려야 하는 경우,
   // 아래 "initialValue"를 사용한다.
-  final String? value; // 받아도 되고, 안 받아도 되고, 즉, "required" 아닐 때, "?" 필수.
+  // final String? value; // 받아도 되고, 안 받아도 되고, 즉, "required" 아닐 때, "?" 필수.
+
+  final TextEditingController? controller;
 
   // const CustomTextFormField({super.key, required this.hint});
-  const CustomTextArea({required this.hint, required this.doValidateFormField, this.value});
+  // const CustomTextArea({required this.hint, required this.doValidateFormField, this.value});
+  const CustomTextArea({required this.hint, required this.doValidateFormField, this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +33,11 @@ class CustomTextArea extends StatelessWidget {
 
         maxLines: 10,
 
+        controller: controller,
+
         // "글 수정하기"와 같이, 초기에 반드시 어떤 내용을 가져가서 뿌려야 하는 경우,
         // 아래 "initialValue"를 사용한다.
-        initialValue: "$value", // 또한 "null" 때문에 오류 위험.
+        // initialValue: "$value", // 또한 "null" 때문에 오류 위험.
         // initialValue: value ?? "", // 또한 "null" 때문에 오류 위험.
         //initialValue: "초기 값", // 또한 "null" 때문에 오류 위험.
 

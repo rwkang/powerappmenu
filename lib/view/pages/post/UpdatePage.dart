@@ -11,6 +11,9 @@ class UpdatePage extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +26,22 @@ class UpdatePage extends StatelessWidget {
           child: ListView(
             children: [
               CustomTextFormField(
+
+                controller: _titleController,
+
+                // value: "제목 1",
+
                 hint: "Title",
                 doValidateFormField: doValidateTitle(),
-                value: "제목 1",
               ),
               CustomTextArea(
+
+                controller: _contentController,
+
+                // value: "내용 1" * 20,
+
                 hint: "Content",
                 doValidateFormField: doValidateContent(),
-                value: "내용 1" * 20,
               ),
               CustomElevatedButton(
                 text: "글 수정하기",

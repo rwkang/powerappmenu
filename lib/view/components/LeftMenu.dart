@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:powerappmenu/util/Jwt.dart';
 
+import '../../controller/UserController.dart';
 import '../../size.dart';
 import '../pages/post/WritePage.dart';
 import '../pages/user/LoginPage.dart';
-import '../pages/user/LogoutPage.dart';
 import '../pages/user/UserInfo.dart';
 
 class LeftMenu extends StatelessWidget {
-  const LeftMenu({
-    super.key,
-  });
+  // const LeftMenu({super.key});
+
+  // 2023.08.08 Added. Login.로그인 페이지로 가기 전에,
+  // 반드시, 아래 내용을 먼저 초기화 해 주어야 한다.
+  // 1> 상태 관리 초기화: isLogin.value = false;
+  // 2> 토큰 초기화: jwtToken = null;
+
+  // 이를 위하여, 상단에 UserController userController = Get.find(); 선언을 해 주어야 한다.
+  UserController userController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +68,20 @@ class LeftMenu extends StatelessWidget {
                 const Divider(), // 구분 선
                 TextButton(
                   onPressed: () {
+
+                    // 2023.08.08 Added. Login.로그인 페이지로 가기 전에,
+                    // 반드시, 아래 내용을 먼저 초기화 해 주어야 한다.
+                    // 1> 상태 관리 초기화: isLogin.value = false;
+                    // 2> 토큰 초기화: jwtToken = null;
+                    // 이를 위하여, 상단에 UserController userController = Get.find(); 선언을 해 주어야 한다.
+                    // userController.isLogin.value = false;
+                    // jwtToken = null;
+                    // ===> 그런데,
+                    // 여기서 이렇게 자질구레하게 처리하는 것 보다,
+                    // UserController.dart 파일에서, 펑션 처리하고, 여기서는 그 펑션만 호출하는 것이 매우 깔끔하다 할 수 있겠다.
+
+                    userController.logout();
+
                     Get.to(LoginPage());
                     // Get.to(LogoutPage());
                   },

@@ -15,6 +15,10 @@ class JoinPage extends StatelessWidget {
   // "Form State global Key.폼 상태 관리용 클로벌 키" 정의
   final _formKey = GlobalKey<FormState>();
 
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,19 +65,28 @@ class JoinPage extends StatelessWidget {
       child: Column(
         children: [
           CustomTextFormField(
+            controller: _usernameController,
+
+            // value: "",
+
             hint: "User Name",
             doValidateFormField: doValidateUserName(),
-            value: "",
           ),
           CustomTextFormField(
+            controller: _passwordController,
+
+            // value: "",
+
             hint: "Password",
             doValidateFormField: doValidatePassword(),
-            value: "",
           ),
           CustomTextFormField(
+            controller: _emailController,
+
+            // value: "",
+
             hint: "Email",
             doValidateFormField: doValidateEmail(),
-            value: "",
           ),
           // CustomElevatedButton()에서 pageRoute 펑션 변수를 통한, "페이지 이동"
           CustomElevatedButton(
@@ -81,7 +94,7 @@ class JoinPage extends StatelessWidget {
             doRoutePage: () {
               if (_formKey.currentState!.validate()) {
                 // Get.to(HomePage());
-                Get.to(LoginPage());
+                Get.to(() => LoginPage());
               }
             }, // param이 2개 이상일 때.
             // doRoutePage: () => Get.to(LoginPage()), // param이 1개일 때.
@@ -89,10 +102,10 @@ class JoinPage extends StatelessWidget {
           // const Divider(),
           TextButton(
             onPressed: () {
-              Get.to(LoginPage());
+              Get.to(() => LoginPage());
             },
             child: const Text(
-              "이미 계정이 있습ㄴ까?",
+              "이미 계정이 있습니까?",
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,

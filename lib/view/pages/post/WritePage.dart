@@ -12,6 +12,9 @@ class WritePage extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,14 +27,22 @@ class WritePage extends StatelessWidget {
           child: ListView(
             children: [
               CustomTextFormField(
+
+                controller: _titleController,
+
+                // value: "제목 ???",
+
                 hint: "Title",
                 doValidateFormField: doValidateTitle(),
-                value: "제목 ???",
               ),
               CustomTextArea(
+
+                controller: _contentController,
+
+                // value: "내용 1" * 20,
+
                 hint: "Content",
                 doValidateFormField: doValidateContent(),
-                value: "내용 1" * 20,
               ),
               CustomElevatedButton(
                 text: "글 쓰기",
