@@ -4,15 +4,22 @@
 import 'dart:convert';
 
 import 'package:get/get_connect/http/src/response/response.dart';
+import 'package:powerappmenu/domain/user/User.dart';
 import 'package:powerappmenu/domain/user/UserProvider.dart';
+import 'package:powerappmenu/dto/ResponseDto.dart';
+import 'package:powerappmenu/util/Jwt.dart';
 
 import '../../dto/LoginRequestDto.dart';
+
 
 class UserRepository {
 
   final UserProvider _userProvider = UserProvider();
 
-  Future<String> login(String username, String password) async {
+  /// 2023.08.13 Conclusion. User 정보까지 받아 와서, 이것을 "상태 관리" 하면서,
+  /// "내 게시글"일 경우, "수정" 및 "삭제" 가능하도록 처리.
+  Future<User> loginRepository(String username, String password) async {
+  // Future<String> loginRepository(String username, String password) async { /// 일단 user 정보 삐고, "토큰"만 받아 오기
   // Future<Response> login(String username, String password) async {
   // Future<void> login(String username, String password) async {
 
@@ -25,7 +32,7 @@ class UserRepository {
     // 아래와 같이, ".toJson()" 메서드를 호출하기만 하면 된다.
     // 그러기 위해서, "dto" Object를 만드는 것이다.
 
-    Response response = await _userProvider.login(loginRequestDto.toJson());
+    Response response = await _userProvider.loginProvider(loginRequestDto.toJson());
 
     print("loginRequestDto.toJson(): ${loginRequestDto.toJson()}"); // {username: ssar, password: 1234} : 아래와 똑 같이 뿌려진다
     print("loginRequestDto.toJson().toString(): ${loginRequestDto.toJson().toString()}"); // {username: ssar, password: 1234}
@@ -44,16 +51,50 @@ class UserRepository {
     String headersContentType = headers["content-type"];
     print("contentType.substring(11): ${headersContentType.substring(0, 11)}");
 
-    if (headersContentType.substring(0, 11) != "application") {
-      print("=====> 로그인 실패");
-      String token = "";
-      return "-1";
+    /// 2023.08.10 Added. 사용자 정보 또한 "상태 관리"에 Obs()로 올려서 관리하면서,
+    /// "내 게시글"일 경우에만, "수정", "삭제" 하게 한다.
+    dynamic body = response.body;
+    print("/repository/UserRepository.java/body: ${body}");
+    print("1========================================================");
+
+    /// 한글 변환은 필요 없다.
+    /// dynamic convertBody = convertUtf8ToObject(body);
+
+    /// 2023.08.13 Conclusion. User 정보까지 받아 와서, 이것을 "상태 관리" 하면서,
+    /// "내 게시글"일 경우, "수정" 및 "삭제" 가능하도록 처리.
+    ResponseDto responseDto = ResponseDto.fromJson(body);
+    if (responseDto.code == 1) {
+      User principal = User.fromJson(responseDto.data); /// principal: 앞장서는(leading), 주요한,... 즉, "인증 정보"
+      // User user = User.fromJson(responseDto.data);
+
+      String token = headers["authorization"];
+      // if (token!= "-1") {
+        // Login.로그인 성공시, 상태 관리 변경... RxBool 타입은 꼭 ".value" 형식으로 사용.
+        // isLogin.value = true;
+        jwtToken = token;
+      // } else {
+      //   // 여기는 token 값이 null 이다.
+      // }
+
+      return principal;
     } else {
-      print("=====> 로그인 성공");
+      // User principal = new User();
+      return User();
     }
 
+
+    // /// 일단 user 정보 삐고, "토큰"만 받아 오기
+    // if (headers["authorization"] == null) {
+    // // if (headersContentType.substring(0, 11) != "application") {
+    //   print("/repository/UserRepository.java/=====> 로그인 실패: ${headers["authorization"]}");
+    //   String token = "";
+    //   return "-1";
+    // } else {
+    //   print("/repository/UserRepository.java/=====> 로그인 성공");
+    // }
+
+    // String token = headers["authorization"];
     // dynamic headers = response.headers;
-    String token = headers["authorization"];
 
     // print("=====================================");
     // print("token: ${token}"); // Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3PthqDtgbAiLCJpZCI6MSwiZXhwIjoxNjkxNDA2MDgzfQ.Uqn2EDU5lQDIWuDKD9RrGfeh4RiPRhDWMbgwY3dAqyRRvcpybaVF9Vj7viFYxSA57Xp56jrgen8mhXCUinhjVA
@@ -64,7 +105,7 @@ class UserRepository {
 
     // String? token = response.headers!["authorization"];
 
-    return token;
+    // return token;
 
   }
 

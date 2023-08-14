@@ -21,6 +21,10 @@ class JoinPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // print("/JoinPage.dart/_usernameController: ${_usernameController.text}");
+    // print("==================================================================");
+
     return Scaffold(
       // 2023.08.05 Conclusion. ListView 위젯을 쓰는 이유는, 아래에서 "키보드"가 올라오면서,
       // 자동으로 "스크롤"이 되어야 한다.

@@ -25,7 +25,7 @@ class CustomTextFormField extends StatelessWidget {
   // final controller;
 
   // const CustomTextFormField({super.key, required this.hint});
-  const CustomTextFormField({
+  const CustomTextFormField({super.key,
     required this.hint,
     required this.doValidateFormField,
     // required this.value,
@@ -42,6 +42,9 @@ class CustomTextFormField extends StatelessWidget {
 
         controller: controller,
         // controller: controller ?? TextEditingController(),
+
+        /// 2023.08.14 Conclusion. "Controller.컨트롤러"와 "initialValue.초기값"을 함꼐 넘길 수 없다.
+        /// 꼭 함께 넘겨야 할 상황에서는, "/post/UpdatePage.dart" 참조
 
         // "글 수정하기"와 같이, 초기에 반드시 어떤 내용을 가져가서 뿌려야 하는 경우,
         // 아래 "initialValue"를 사용한다.

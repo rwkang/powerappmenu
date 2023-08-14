@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CustomTextArea extends StatelessWidget {
@@ -23,14 +22,17 @@ class CustomTextArea extends StatelessWidget {
 
   // const CustomTextFormField({super.key, required this.hint});
   // const CustomTextArea({required this.hint, required this.doValidateFormField, this.value});
-  const CustomTextArea({required this.hint, required this.doValidateFormField, this.controller});
+  CustomTextArea({
+    required this.hint,
+    required this.doValidateFormField,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
-
         maxLines: 10,
 
         controller: controller,
@@ -45,7 +47,7 @@ class CustomTextArea extends StatelessWidget {
         validator: doValidateFormField,
 
         decoration: InputDecoration(
-          // 2023.08.05 Conclusion. 변수 대입은 "" - 따옴표 안에 "$"와 함께 사용하는 습관이 좋다.
+            // 2023.08.05 Conclusion. 변수 대입은 "" - 따옴표 안에 "$"와 함께 사용하는 습관이 좋다.
             hintText: "Enter $hint",
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
@@ -55,8 +57,7 @@ class CustomTextArea extends StatelessWidget {
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
-            )
-        ),
+            )),
       ),
     );
   }

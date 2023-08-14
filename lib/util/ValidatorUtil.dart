@@ -6,7 +6,7 @@ Function doValidateUserName() { //
     // print(value);
     if (value!.isEmpty) {
       return "User Name cannot be empty";
-    } else if (value.length < 4) {
+    } else if (value.length < 3) {
       return "User Name must be at least 4 characters long";
     } else if (!isAlphanumeric(value)) {
       return "User Name must be alphabet or number";
@@ -21,7 +21,7 @@ Function doValidatePassword() {
     // print(value);
     if (value!.isEmpty) {
       return "Password cannot be empty";
-    } else if (value.length < 4) {
+    } else if (value.length < 3) {
       return "Password must be at least 4 characters long";
     // } else if (!isAlpha(value)) {
     //   return "Password must be alphabet";

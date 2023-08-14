@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:powerappmenu/controller/UserController.dart';
+import 'package:powerappmenu/domain/user/User.dart';
 import 'package:powerappmenu/domain/user/UserRepository.dart';
 import 'package:powerappmenu/util/ValidatorUtil.dart';
 
@@ -67,6 +68,10 @@ class LoginPage extends StatelessWidget {
   // "Refact" 한 후 메드는 반드시 "Widget" 타입, 즉 "최상위 부모" 타입으로 변경해 준다.
   // Form _joinForm() {
   Widget _loginForm() {
+
+    print("/LoginPage.dart/_usernameController: ${_usernameController.text}");
+    print("==================================================================");
+
     return Form(
       // 상단에서 "Form State global Key.폼 상태 관리용 클로벌 키" 정의 한 후,
       // 여기서 아래와 같이 "Key 세팅"을 하면, "현재 From 상태"를 관리할 수 있다.
@@ -92,18 +97,25 @@ class LoginPage extends StatelessWidget {
                 if (_formKey.currentState!.validate()) {
                   // 2023.08.05 Conclusion. 실제로는 "Controller.login()"을 호출해야 한다.
                   // 아래 직접 호출한 것은, 잠시 테스트만 해 본다.
-                  // UserRepository u = UserRepository();
-                  // u.login("ssar", "1234");
+                  // UserRepository userRepository = UserRepository();
+                  // userRepository.login("ssar", "1234");
+
+                  /// 2023.08.13 Conclusion. User 정보까지 받아 와서, 이것을 "상태 관리" 하면서,
+                  /// "내 게시글"일 경우, "수정" 및 "삭제" 가능하도록 처리.
+                  int result = await userController.loginController(
 
                   // 2023.08.07 Conclusion. userController.login()에서 return.리턴한 값을 받을 수 있다.
                   // 단, 여기서도 받을려면, 반드시 "async" <=> "await" 상태로 구분 자체를 수정해 주어야 한다.
-                  String token = await userController.login(
+                  // String token = await userController.loginController( /// 일단 user 정보 삐고, "토큰"만 받아 오기
+
                     _usernameController.text.trim(),
                     _passwordController.text.trim(),
+
                   );
 
+                  if (result == 1) {
+                  // if (token != "-1") {
                   // if (token.isNotEmpty) {
-                  if (token != "-1") {
                     Get.to(() => HomePage());
                   } else {
                     // 로그인 실패에 대한 "Popup Window" 띄우기.
@@ -116,8 +128,7 @@ class LoginPage extends StatelessWidget {
                   //Get.to(() => HomePage());
                   // Get.to(()=> JoinPage());
 
-                  print(
-                      "/user/LoginPage.dart/CustomElevatedButton.로그인 클릭 후 받은 token: ${token}");
+                  print("/user/LoginPage.dart/로그인 클릭 후 받은 token: ${result}");
                 }
               }),
           // param이 2개 이상일 때.

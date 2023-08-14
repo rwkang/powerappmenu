@@ -6,10 +6,21 @@
 import 'package:get/get.dart';
 
 const host = "http://192.168.0.8:8080";
+// const host = "http://192.168.0.8:8080/login";
 
+// print("/domain/user/UserProvider.dart/UserProvider.host: ${host}");
 class UserProvider extends GetConnect {
 
   // Promise (Response.응답 받기로 약속) => Repository에서 받는다.
-  Future<Response> login(Map data) => post("$host/login", data);
+
+  /// Future<Response> loginProvider(Map data) => post("$host/login", data); // 아래와 100% 동일.
+  Future<Response> loginProvider(Map data) { /// 위의 1줄 라인을 풀어 쓰는 것이다. print() 문 사용을 위해...
+
+    print("=====>/domain/user/UserProvider.dart/UserProvider.host: ${host}");
+    print("=====>/domain/user/UserProvider.dart/UserProvider.data: ${data}");
+
+    return post("$host/login", data);
+
+  }
 
 }

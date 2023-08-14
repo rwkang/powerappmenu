@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       // 라우터 설계 필요 없음. GetX 사용할 예정
 
       // home: HomePage(),
-      home: JoinPage(),
-      // home: LoginPage(),
+      // home: JoinPage(),
+      home: LoginPage(),
 
     );
   }
